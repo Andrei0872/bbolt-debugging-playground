@@ -23,6 +23,13 @@ Examples live in `toy/` and are toggled by uncommenting the relevant call in `to
 | `rebalanceExample()` | `rebalance.go` | Freelist rebalancing after deletions |
 | `inlineBucketExample()` | `inline_bucket.go` | Inline vs regular buckets — when a child bucket lives inside the parent's leaf page vs owning its own page |
 | `pageElementsExample()` | `page_elements.go` | Raw on-disk layout of branch and leaf pages read directly with `encoding/binary` |
+| `leafRootExample()` | `leaf_root.go` | Leaf root bucket — has its own page but no branch pages yet; shows both ways to leave inline mode and the transition to a branch root |
+| `deleteKVExample()` | `delete_kv.go` | `bucket.Delete()` — existing key, missing key (no-op), and deleting a bucket key (ErrIncompatibleValue) |
+| `deleteBucketExample()` | `delete_bucket.go` | `bucket.DeleteBucket()` — inline bucket, regular bucket, nested recursive delete, ErrBucketNotFound, ErrIncompatibleValue |
+| `deleteRebalanceNoMergeExample()` | `delete_rebalance_no_merge.go` | `node.rebalance()` early return — node stays above threshold, no structural change |
+| `deleteRebalanceCollapseExample()` | `delete_rebalance_collapse.go` | `node.rebalance()` root branch collapse — branch with one child pulls that child up as new root, depth drops |
+| `deleteRebalanceMergeExample()` | `delete_rebalance_merge.go` | `node.rebalance()` merge paths — empty node removed from parent; merge with right sibling; merge with left sibling |
+| `deleteRebalanceBranchMergeExample()` | `delete_rebalance_branch_merge.go` | `node.rebalance()` branch-level merge — depth-3 tree where two intermediate branch nodes merge and materialized children are reparented |
 
 ## Debugging
 
