@@ -1,9 +1,11 @@
 package main
 
 func main() {
-	basicExample()
-	mvccExample()
+	// basicExample()
+	// mvccExample()
 	branchPagesExample()
-	largeTxExample()
-	rebalanceExample()
+	// largeTxExample()
+	// rebalanceExample()
+	// inlineBucketExample()
+	// pageElementsExample()
 }

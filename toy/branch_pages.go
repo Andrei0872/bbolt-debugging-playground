@@ -38,7 +38,7 @@ func branchPagesExample() {
 		PageSize: 4096,
 		// Pre-allocate mmap space to avoid the mmaplock write-lock that would
 		// deadlock when a write tx commits while a read tx is open.
-		InitialMmapSize: 64 * 1024 * 1024,
+		// InitialMmapSize: 64 * 1024 * 1024,
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -91,4 +91,14 @@ func branchPagesExample() {
 			log.Fatal(err)
 		}
 	}
+
+	// Visualisation of the B+Tree.
+	err = db.View(func(tx *bolt.Tx) error {
+		key := "key-00001584"
+
+		res := tx.Bucket(bucket).Get([]byte(key))
+		fmt.Printf("res: = %v", res)
+
+		return nil
+	})
 }
